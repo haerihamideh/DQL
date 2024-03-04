@@ -4,9 +4,9 @@ import xml.etree.ElementTree as ET
 from collections import defaultdict
 
 # Directory paths
-input_dir = 'C:\\Users\\ASUS\\Desktop\\elham\\dataset\\FA_DataSet_XML\\vnaft\\train'
-output_dir_individual = 'C:\\Users\\ASUS\\Desktop\\elham\\dataset\\FA_DataSet_XML\\vnaft\\train_out'
-output_dir_avg = 'C:\\Users\\ASUS\\Desktop\\elham\\dataset\\FA_DataSet_XML\\vnaft'
+input_dir = 'C:\\Users\\ASUS\\Desktop\\elham\\dataset\\FA_DataSet_XML\\khodro\\train'
+output_dir_individual = 'C:\\Users\\ASUS\\Desktop\\elham\\dataset\\FA_DataSet_XML\\khodro\\train_out'
+output_dir_avg = 'C:\\Users\\ASUS\\Desktop\\elham\\dataset\\FA_DataSet_XML\\khodro'
 lexicon_csv_path = 'C:\\Users\\ASUS\\Desktop\\elham\\dataset\\FA_DataSet_XML\\persian_sentiment_lexicon.csv'
 
 # Load the Persian sentiment lexicon from the CSV file
@@ -95,7 +95,7 @@ for filename in os.listdir(input_dir):
                 daily_polarity_counts[date] += 1
 
 # Calculate average polarity for each day
-daily_average_polarity = {date: total / count for date, total in daily_polarity_totals.items() for count in daily_polarity_counts.values()}
+daily_average_polarity = {date.replace('-', ''): total / count for date, total in daily_polarity_totals.items() for count in daily_polarity_counts.values()}
 
 # Write daily average polarity to a CSV file
 output_csv_path_avg = os.path.join(output_dir_avg, 'daily_average_polarity.csv')
@@ -104,6 +104,7 @@ with open(output_csv_path_avg, 'w', newline='', encoding='utf-8') as csvfile:
     writer_avg.writerow(['Date', 'Average_Polarity'])
     for date, average_polarity in daily_average_polarity.items():
         writer_avg.writerow([date, average_polarity])
+
 
 print("Average polarity calculated and saved to 'daily_average_polarity.csv'.")
 print("Individual sentiment analysis completed. Results saved in 'train_out' directory.")
