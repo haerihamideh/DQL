@@ -1,5 +1,5 @@
 # Stock Market Trading Prediction Model with Persian Sentiment Analysis
-Overview
+# Overview
 Welcome to the Stock Market Trading Prediction Model project! This project integrates sentiment analysis of Persian tweets related to stock market companies with deep learning techniques to predict stock market trends and facilitate trading decisions. By combining human sensibility from social media data with advanced machine learning algorithms, this project aims to provide traders with predictive models that can analyze historical stock data, identify patterns, and make accurate predictions about future market movements.
 
 # Motivation
