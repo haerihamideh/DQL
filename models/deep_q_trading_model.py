@@ -160,11 +160,4 @@ class DeepQTradingModel:
         print(f"    MAE: {combined_metrics[3]}")
 
 
-class DataLoader:
-    def __init__(self, begin_date, end_date, test_size, validation_size, train_size):
-        self.begin_date = begin_date
-        self.end_date = end_date
-        self.test_size = test_size
-        self.validation_size = validation_size
-        self.train_size = train_size
 
