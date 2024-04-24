@@ -60,10 +60,11 @@ To get started with the Stock Market Trading Prediction Model project, follow th
 Upon executing the project, you can expect the following outcomes:
 
 For each stock market company:
-
-- **LSTM Metrics:**
-- **GRU Metrics:**
-- **Combined Metrics:**
+- **three Models are implemented:**
+  - LSTM Metrics:
+  - GRU Metrics:
+  - Combined of LSTM and GRU Metrics:
+- **these metrics are generated:**
   - Loss
   - Mean Squared Error (MSE)
   - Root Mean Squared Error (RMSE)
