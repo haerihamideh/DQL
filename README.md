@@ -12,26 +12,30 @@ The stock market is known for its complexity and volatility, making it challengi
 
 ### Data Collection and Preprocessing
 
-- Persian tweets related to specific stock market companies are collected from social media platforms.
-- The collected tweets are preprocessed to extract relevant features and sentiments.
-- The sentiment of each tweet is classified as positive or negative based on the sentiment expressed in the text.
-- Polarity scores are assigned to each tweet based on the sentiment lexicon and user-defined sentiment labels.
+1. **Data Collection:** Persian tweets related to specific stock market companies are collected from social media platforms.
+2. **Preprocessing:** The collected tweets are preprocessed to extract relevant features and sentiments.
+3. **Sentiment Classification:** The sentiment of each tweet is classified as positive or negative based on the sentiment expressed in the text.
+4. **Polarity Score Assignment:** Polarity scores are assigned to each tweet based on the sentiment lexicon and user-defined sentiment labels.
 
 ### Sentiment Analysis
 
-- Sentiment analysis is performed on the collected tweets to determine the overall sentiment towards each stock market company.
-- The sentiment analysis results are aggregated to calculate daily average polarity scores for each company.
+1. **Overall Sentiment Determination:** Sentiment analysis is performed on the collected tweets to determine the overall sentiment towards each stock market company.
+2. **Polarity Score Aggregation:** The sentiment analysis results are aggregated to calculate daily average polarity scores for each company.
+
+### Learning Phase (Combination of Deep Q Learning and Sentiment Analysis)
+
+During the learning phase, the project utilizes a combination of Deep Q Learning (DQL) and sentiment analysis in the reward function. This approach integrates insights from both historical market data and sentiment analysis of social media data to enhance the trading strategy. The reward function is designed to incentivize the model to make decisions that align with both market trends and sentiment analysis, leading to more informed trading decisions.
 
 ### Model Architecture
 
-- LSTM (Long Short-Term Memory) and GRU (Gated Recurrent Unit) deep learning architectures are employed for stock market prediction.
-- Both models are trained on historical stock market data along with the calculated daily average polarity scores.
-- The models consist of multiple layers of LSTM or GRU cells, followed by dropout layers to prevent overfitting, and a dense output layer for classification.
+1. **LSTM and GRU Models:** Long Short-Term Memory (LSTM) and Gated Recurrent Unit (GRU) deep learning architectures are employed for stock market prediction.
+2. **Training Data:** Both models are trained on historical stock market data along with the calculated daily average polarity scores.
+3. **Model Layers:** The models consist of multiple layers of LSTM or GRU cells, followed by dropout layers to prevent overfitting, and a dense output layer for classification.
 
 ### Training and Evaluation
 
-- The models are trained on a subset of the historical data, with a portion reserved for validation to monitor training progress and prevent overfitting.
-- Evaluation metrics such as accuracy, loss, and reward are used to assess the performance of the models on both the training and validation datasets.
+1. **Training Process:** The models are trained on a subset of the historical data, with a portion reserved for validation to monitor training progress and prevent overfitting.
+2. **Evaluation Metrics:** Evaluation metrics such as accuracy, loss, and reward are used to assess the performance of the models on both the training and validation datasets.
 
 ## Requirements
 
@@ -46,16 +50,24 @@ Before running the project, ensure you have the following dependencies installed
 
 To get started with the Stock Market Trading Prediction Model project, follow these steps:
 
-1. Clone or download the project repository to your local machine.
-2. Install the required dependencies mentioned in the Requirements section.
-3. Run the preprocessing script to collect and preprocess Persian tweets, perform sentiment analysis, and calculate daily average polarity scores.
-4. Run the `main.py` file using Python to train and evaluate the LSTM and GRU models for stock market prediction.
+1. **Clone or Download:** Clone or download the project repository to your local machine.
+2. **Install Dependencies:** Install the required dependencies mentioned in the Requirements section.
+3. **Preprocessing:** Run the preprocessing script to collect and preprocess Persian tweets, perform sentiment analysis, and calculate daily average polarity scores.
+4. **Training and Evaluation:** Run the main.py file using Python to train and evaluate the LSTM and GRU models for stock market prediction.
 
 ## Results
 
 Upon executing the project, you can expect the following outcomes:
 
-- Training and validation loss plots for LSTM and GRU models, illustrating the convergence of the models during training.
-- Training reward plots for LSTM and GRU models, showcasing the performance of each model over epochs.
-- Evaluation metrics such as accuracy and loss for both the LSTM and GRU models.
-- Daily average polarity scores for each stock market company, providing insights into market sentiment derived from Persian tweets.
+For each stock market company:
+
+- **LSTM Metrics:**
+- **GRU Metrics:**
+- **Combined Metrics:**
+  - Loss
+  - Mean Squared Error (MSE)
+  - Root Mean Squared Error (RMSE)
+  - Mean Absolute Error (MAE)
+
+These metrics provide insights into the performance of the LSTM, GRU, and combined models in predicting stock market trends, considering both historical data and sentiment analysis.
+
