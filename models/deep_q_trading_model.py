@@ -111,7 +111,7 @@ class DeepQTradingModel:
     def _rpc_zr(self, value):
         epsilon = 1e-10
         if value == 0:
-            return np.random.uniform(epsilon, epsilon * 10)
+            return np.random.uniform(epsilon, epsilon * 100)
         return value
     
     def plot_results(self, company, *model_results):
@@ -168,21 +168,3 @@ class DataLoader:
         self.validation_size = validation_size
         self.train_size = train_size
 
-    def load_data(self, company):
-        # Here you can implement your data loading logic
-        # For example, you can load data from files or databases
-        # Make sure to return X_train, X_val, X_test, y_train, y_val, y_test, RoR
-        # RoR might be the Rate of Return or any other target variable
-        
-        # Example placeholders:
-        X_train = np.random.rand(self.train_size, 10)  # Example training features
-        X_val = np.random.rand(self.validation_size, 10)  # Example validation features
-        X_test = np.random.rand(self.test_size, 10)  # Example test features
-        
-        y_train = np.random.randint(0, 3, self.train_size)  # Example training labels
-        y_val = np.random.randint(0, 3, self.validation_size)  # Example validation labels
-        y_test = np.random.randint(0, 3, self.test_size)  # Example test labels
-        
-        RoR = np.random.rand(self.train_size)  # Example Rate of Return
-        
-        return X_train, X_val, X_test, y_train, y_val, y_test, RoR
