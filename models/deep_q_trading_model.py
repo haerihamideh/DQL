@@ -102,7 +102,7 @@ class DeepQTradingModel:
         
         loss = self._rpc_zr(loss)
         mse = self._rpc_zr(mse)
-        rmse = self._rpc_zr(rmse)
+        rmse = self._rpc_zr(np.sqrt(mse))
         mae = self._rpc_zr(mae)
         
         return loss, mse, rmse, mae
