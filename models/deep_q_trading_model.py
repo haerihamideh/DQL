@@ -100,19 +100,10 @@ class DeepQTradingModel:
         rmse = np.sqrt(mse)
         mae = mean_absolute_error(np.argmax(y_test_encoded, axis=1), np.argmax(y_pred, axis=1))
         
-        loss = self._rpc_zr(loss)
-        mse = self._rpc_zr(mse)
-        rmse = self._rpc_zr(np.sqrt(mse))
-        mae = self._rpc_zr(mae)
-        
+       
         return loss, mse, rmse, mae
         
 
-    def _rpc_zr(self, value):
-        epsilon = 1e-10
-        if value == 0:
-            return np.random.uniform(epsilon, epsilon * 100)
-        return value
     
     def plot_results(self, company, *model_results):
         model_names = ["LSTM", "GRU", "Combined"]
