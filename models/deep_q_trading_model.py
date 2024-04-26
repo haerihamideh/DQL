@@ -33,8 +33,9 @@ class DeepQTradingModel:
         y_val_encoded = to_categorical(label_encoder.transform(y_val), num_classes=3)
 
         # Define reward function
-        def reward_function(y_true, y_pred):
-            return np.mean(np.abs(y_true - y_pred))  # Mean Absolute Error as reward
+        def reward_function(X):
+            rewards = X['Reward'].values
+            return np.mean(rewards)
 
         # Define LSTM Model
         lstm_model = Sequential([
@@ -76,7 +77,7 @@ class DeepQTradingModel:
                 history_val_losses.append(history.history['val_loss'])
 
                 y_pred_val = model.predict(X_val)
-                reward = reward_function(np.argmax(y_val, axis=1), np.argmax(y_pred_val, axis=1))
+                reward = reward_function(X_val)
                 rewards.append(reward)
 
             return model, rewards, history_losses, history_val_losses
