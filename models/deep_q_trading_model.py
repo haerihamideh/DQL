@@ -33,8 +33,9 @@ class DeepQTradingModel:
         y_val_encoded = to_categorical(label_encoder.transform(y_val), num_classes=3)
 
         # Define reward function
-        def reward_function(y_true, y_pred):
-            return np.mean(np.abs(y_true - y_pred))  # Mean Absolute Error as reward
+        def reward_function(X):
+            rewards = X['Reward'].values
+            return np.mean(rewards)
 
         # Define LSTM Model
         lstm_model = Sequential([
@@ -76,7 +77,7 @@ class DeepQTradingModel:
                 history_val_losses.append(history.history['val_loss'])
 
                 y_pred_val = model.predict(X_val)
-                reward = reward_function(np.argmax(y_val, axis=1), np.argmax(y_pred_val, axis=1))
+                reward = reward_function(X_val)
                 rewards.append(reward)
 
             return model, rewards, history_losses, history_val_losses
@@ -100,19 +101,10 @@ class DeepQTradingModel:
         rmse = np.sqrt(mse)
         mae = mean_absolute_error(np.argmax(y_test_encoded, axis=1), np.argmax(y_pred, axis=1))
         
-        loss = self._rpc_zr(loss)
-        mse = self._rpc_zr(mse)
-        rmse = self._rpc_zr(np.sqrt(mse))
-        mae = self._rpc_zr(mae)
-        
+       
         return loss, mse, rmse, mae
         
 
-    def _rpc_zr(self, value):
-        epsilon = 1e-10
-        if value == 0:
-            return np.random.uniform(epsilon, epsilon * 100)
-        return value
     
     def plot_results(self, company, *model_results):
         model_names = ["LSTM", "GRU", "Combined"]
