@@ -26,21 +26,4 @@ def calculate_reward(ticker,data):
     merged_data['Action'] = (merged_data['Reward'] > 0).astype(int) 
     return merged_data
 
-    '''
-    df = data.copy()
-    reward = []
-    action = []
-    for i in range(len(df)):
-        reward_day = (df["Close"][i] - df["Open"][i]) / df["Open"][i]
-        reward_day = round(reward_day, 2)
-        action_day = 1
-        if reward_day < 0:
-            reward_day = 0
-            action_day = 0
-        reward.append(reward_day)
-        action.append(action_day)
-    df["Reward"] = reward
-    df["Action"] = action
-    
-    return df
-    '''
+   
