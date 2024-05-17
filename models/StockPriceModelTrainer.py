@@ -71,18 +71,18 @@ class StockPriceModelTrainer:
 
     def calculate_daily_metrics(self, dates, y_test, initial_deposit=1000000):
         # Initialize variables
-        deposit = initial_deposit
         daily_metrics = []
         
         # Loop through each day's return
         for i in range(len(y_test)):
             daily_return = y_test[i][0]  # Extract the scalar value from the array
-            deposit = deposit * (1 + daily_return)
+            deposit = initial_deposit * (1 + daily_return)
             max_dd = np.max(np.maximum.accumulate(y_test[:i+1]) - y_test[:i+1]).max()
             ROR = np.mean(y_test[:i+1]).item()
             Ra = 0.05  # Assumed annual return without risk
             sigma_a = np.std(y_test[:i+1]).item()
             sharpe_ratio = np.abs((ROR - Ra) / sigma_a)
+            ROX = (deposit - initial_deposit) / initial_deposit
             
             # Collect daily metrics
             daily_metrics.append({
@@ -90,7 +90,8 @@ class StockPriceModelTrainer:
                 'deposit': deposit,
                 'daily_return': daily_return,
                 'drawdown': max_dd,
-                'sharpe_ratio': sharpe_ratio
+                'sharpe_ratio': sharpe_ratio,
+                'ror': ROX
             })
         
         return daily_metrics
@@ -141,5 +142,5 @@ class StockPriceModelTrainer:
         print("\nDaily Metrics for Last 30 Days:")
         for day_metric in daily_metrics:
             print(f"Date: {day_metric['date']}, Deposit: {day_metric['deposit']:.2f}, "
-                  f"Return: {day_metric['daily_return']:.4f}, Drawdown: {day_metric['drawdown']:.4f}, "
-                  f"Sharpe Ratio: {day_metric['sharpe_ratio']:.4f}")
+                  f"nerkhbazgasht: {day_metric['daily_return']:.4f}, Drawdown: {day_metric['drawdown']:.4f}, "
+                  f"Sharpe Ratio: {day_metric['sharpe_ratio']:.4f}, nerkhbazde: {day_metric['ror']:.4f}" )
